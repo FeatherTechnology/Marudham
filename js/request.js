@@ -1079,25 +1079,25 @@ function validation(submit_btn) {
     var occupation = $('#occupation').val(); var loan_category = $('#loan_category').val(); var sub_category = $('#sub_category').val(); var tot_value = $('#tot_value').val();
     var ad_amt = $('#ad_amt').val(); var ad_perc = $('#ad_perc').val(); var loan_amt = $('#loan_amt').val(); var poss_type = $('#poss_type').val(); var due_amt = $('#due_amt').val();
     var due_period = $('#due_period').val();
-    if (cus_id == '') {
+    if (!cus_id) {
         event.preventDefault();
         $('#cusidCheck').show();
     } else {
         $('#cusidCheck').hide();
     }
-    if (cus_name == '') {
+    if (!cus_name) {
         event.preventDefault();
         $('#cusnameCheck').show();
     } else {
         $('#cusnameCheck').hide();
     }
-    if (dob == '') {
+    if (!dob) {
         event.preventDefault();
         $('#dobCheck').show();
     } else {
         $('#dobCheck').hide();
     }
-    if (gender == '') {
+    if (!gender) {
         event.preventDefault();
         $('#genderCheck').show();
     } else {
@@ -1118,37 +1118,37 @@ function validation(submit_btn) {
     } else {
         $('#stateCheck').hide();
     }
-    if (district == '') {
+    if (!district) {
         event.preventDefault();
         $('#districtCheck').show();
     } else {
         $('#districtCheck').hide();
     }
-    if (taluk == '') {
+    if (!taluk ) {
         event.preventDefault();
         $('#talukCheck').show();
     } else {
         $('#talukCheck').hide();
     }
-    if (area == '') {
+    if (!area)  {
         event.preventDefault();
         $('#areaCheck').show();
     } else {
         $('#areaCheck').hide();
     }
-    if (sub_area == '') {
+    if (!sub_area) {
         event.preventDefault();
         $('#subareaCheck').show();
     } else {
         $('#subareaCheck').hide();
     }
-    if (address == '') {
+    if (!address) {
         event.preventDefault();
         $('#addressCheck').show();
     } else {
         $('#addressCheck').hide();
     }
-    if (mobile1 == '' || mobile1.length < 10) {
+    if (!mobile1  || mobile1.length < 10) {
         event.preventDefault();
         $('#mobile1Check').show();
     } else {
@@ -1160,19 +1160,19 @@ function validation(submit_btn) {
     } else {
         $('#mobile2Check').hide();
     }
-    if (father_name == '') {
+    if (!father_name) {
         event.preventDefault();
         $('#fathernameCheck').show();
     } else {
         $('#fathernameCheck').hide();
     }
-    if (mother_name == '') {
+    if (!mother_name) {
         event.preventDefault();
         $('#mothernameCheck').show();
     } else {
         $('#mothernameCheck').hide();
     }
-    if (marital == '') {
+    if (!marital) {
         event.preventDefault();
         $('#maritalCheck').show();
     } else {
@@ -1184,25 +1184,25 @@ function validation(submit_btn) {
             $('#spousenameCheck').hide();
         }
     }
-    if (occupation_type == '') {
+    if (!occupation_type) {
         event.preventDefault();
         $('#occupationtypeCheck').show();
     } else {
         $('#occupationtypeCheck').hide();
     }
-    if (occupation == '') {
+    if (!occupation) {
         event.preventDefault();
         $('#occupationCheck').show();
     } else {
         $('#occupationCheck').hide();
     }
-    if (loan_category == '') {
+    if (!loan_category) {
         event.preventDefault();
         $('#loancategoryCheck').show();
     } else {
         $('#loancategoryCheck').hide();
     }
-    if (sub_category == '') {
+    if (!sub_category) {
         event.preventDefault();
         $('#subcategoryCheck').show();
     } else {
@@ -1226,7 +1226,7 @@ function validation(submit_btn) {
             $('#loanamtCheck').hide();
         }
     }
-    if (poss_type == '') {
+    if (!poss_type) {
         event.preventDefault();
         $('#posstypeCheck').show();
     } else {

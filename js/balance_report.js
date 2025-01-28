@@ -1,7 +1,16 @@
 $(document).ready(function () {
 
     //Balance Report Table
-    var balance_report_table = $('#balance_report_table').DataTable({
+    // var balance_report_table = 
+    $('#reset_btn').click(function () {
+        // balance_report_table.ajax.reload();
+        balanceReportTable();
+    })
+});
+
+function balanceReportTable(){
+    $('#balance_report_table').DataTable().destroy();
+    $('#balance_report_table').DataTable({
         "order": [
             [0, "desc"]
         ],
@@ -61,7 +70,4 @@ $(document).ready(function () {
             searchFunction('balance_report_table');
         }
     });
-    $('#reset_btn').click(function () {
-        balance_report_table.ajax.reload();
-    })
-});
+}

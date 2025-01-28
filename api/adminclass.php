@@ -3861,7 +3861,11 @@ class admin
 		if (!empty($_FILES['guarentorpic']['name'])) {
 			//to delete old pic
 			$goldpic = $_POST['guarentor_image'];
-			unlink("uploads/verification/guarentor/" . $goldpic);
+			$check_file_exts = "uploads/verification/guarentor/" . $goldpic;
+
+			if(file_exists($check_file_exts)){
+				unlink($check_file_exts);
+			}
 
 			$guarentor = $_FILES['guarentorpic']['name'];
 			$pic_temp = $_FILES['guarentorpic']['tmp_name'];
@@ -4537,11 +4541,11 @@ class admin
 				'" . strip_tags($category_info[$i]) . "' )");
 				}
 
-				$mysqli->query("UPDATE request_creation set cus_status = 12,updated_date=now() where req_id ='" . strip_tags($req_id) . "' "); //12 means loan calculation completed
-
-				$mysqli->query("UPDATE in_verification set cus_status = 12,updated_date=now() where req_id ='" . strip_tags($req_id) . "' ");
 			}
 		}
+		$mysqli->query("UPDATE request_creation set cus_status = 12,updated_date=now() where req_id ='" . strip_tags($req_id) . "' "); //12 means loan calculation completed
+
+		$mysqli->query("UPDATE in_verification set cus_status = 12,updated_date=now() where req_id ='" . strip_tags($req_id) . "' ");
 	}
 
 	function getLoanCalculationForVerification($mysqli, $req_id)

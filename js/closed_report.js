@@ -1,8 +1,27 @@
 $(document).ready(function () {
+    
+    $('#from_date').change(function(){
+        const fromDate = $(this).val();
+        const toDate = $('#to_date').val();
+        $('#to_date').attr('min', fromDate);
 
+         // Check if from_date is greater than to_date
+        if (toDate && fromDate > toDate) {
+            $('#to_date').val(''); // Clear the invalid value
+        }
+    });
 
     //Closed Report Table
-    var closed_report_table = $('#closed_report_table').DataTable({
+    // var closed_report_table = 
+    $('#reset_btn').click(function () {
+        // closed_report_table.ajax.reload();
+        closedReportTable();
+    })
+});
+
+function closedReportTable(){
+    $('#closed_report_table').DataTable().destroy();
+    $('#closed_report_table').DataTable({
         "order": [
             [0, "desc"]
         ],
@@ -63,7 +82,4 @@ $(document).ready(function () {
             searchFunction('closed_report_table');
         }
     });
-    $('#reset_btn').click(function () {
-        closed_report_table.ajax.reload();
-    })
-});
+}

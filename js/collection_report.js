@@ -1,7 +1,27 @@
 $(document).ready(function () {
+    
+    $('#from_date').change(function(){
+        const fromDate = $(this).val();
+        const toDate = $('#to_date').val();
+        $('#to_date').attr('min', fromDate);
 
+         // Check if from_date is greater than to_date
+        if (toDate && fromDate > toDate) {
+            $('#to_date').val(''); // Clear the invalid value
+        }
+    });
+    
     //Collection Report Table
-    var collection_report_table = $('#collection_report_table').DataTable({
+    // var collection_report_table = 
+    $('#reset_btn').click(function () {
+        // collection_report_table.ajax.reload();
+        collectionReportTable();
+    })
+});
+
+function collectionReportTable(){
+    $('#collection_report_table').DataTable().destroy();
+    $('#collection_report_table').DataTable({
         "order": [
             [0, "desc"]
         ],
@@ -62,8 +82,4 @@ $(document).ready(function () {
             searchFunction('collection_report_table');
         }
     });
-    $('#reset_btn').click(function () {
-        collection_report_table.ajax.reload();
-    })
-});
-
+}

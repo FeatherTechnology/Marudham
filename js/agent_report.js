@@ -1,6 +1,27 @@
 $(document).ready(function () {
+        
+    $('#from_date').change(function(){
+        const fromDate = $(this).val();
+        const toDate = $('#to_date').val();
+        $('#to_date').attr('min', fromDate);
+
+         // Check if from_date is greater than to_date
+        if (toDate && fromDate > toDate) {
+            $('#to_date').val(''); // Clear the invalid value
+        }
+    });
+    
     //Agent Report Table
-    var agent_report_table = $('#agent_report_table').DataTable({
+    // var agent_report_table = 
+    $('#reset_btn').click(function () {
+        // agent_report_table.ajax.reload();
+        agentReportTable();
+    })
+});
+
+function agentReportTable(){
+    $('#agent_report_table').DataTable().destroy();
+    $('#agent_report_table').DataTable({
         "order": [
             [0, "desc"]
         ],
@@ -61,7 +82,4 @@ $(document).ready(function () {
             searchFunction('agent_report_table');
         }
     });
-    $('#reset_btn').click(function () {
-        agent_report_table.ajax.reload();
-    })
-});
+}

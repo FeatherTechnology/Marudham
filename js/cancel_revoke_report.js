@@ -1,4 +1,15 @@
 $(document).ready(function () {
+    
+    $('#from_date').change(function(){
+        const fromDate = $(this).val();
+        const toDate = $('#to_date').val();
+        $('#to_date').attr('min', fromDate);
+
+         // Check if from_date is greater than to_date
+        if (toDate && fromDate > toDate) {
+            $('#to_date').val(''); // Clear the invalid value
+        }
+    });
 
     $('#sel_screen option').hide();
     $('#sel_screen option[value=""]').show(); // Show the 'Select Screen' option
@@ -16,7 +27,40 @@ $(document).ready(function () {
             $('#sel_screen .cancel-option').show(); 
         }
     });
-    var cancel_revoke_table = $('#cancel_revoke_table').DataTable({
+    // var cancel_revoke_table = 
+    $('#reset_btn').click(function () {
+        // Get the values of the input fields
+        var from_date = $('#from_date').val();
+        var to_date = $('#to_date').val();
+        var type = $('#type').val();
+        var sel_screen = $('#sel_screen').val();
+    
+        // Check if all fields are selected
+        if (from_date === '' || to_date === '' || type === '' || sel_screen === '') {
+            // If any field is empty, show an alert
+            swalError('Warning','Please select all required fields')
+        } else {
+            // If all fields are filled, reload the table
+            // cancel_revoke_table.ajax.reload();
+            cancelRevokeTable();
+        }
+    });
+
+
+});
+//alert message
+function swalError(title, text) {
+	Swal.fire({
+		icon: 'error',
+		title: title,
+		text: text,
+        confirmButtonColor: '#009688',
+	})
+}
+
+function cancelRevokeTable(){
+    $('#cancel_revoke_table').DataTable().destroy();
+    $('#cancel_revoke_table').DataTable({
         "order": [
             [0, "desc"]
         ],
@@ -80,31 +124,4 @@ $(document).ready(function () {
             });
         }
     });
-    $('#reset_btn').click(function () {
-        // Get the values of the input fields
-        var from_date = $('#from_date').val();
-        var to_date = $('#to_date').val();
-        var type = $('#type').val();
-        var sel_screen = $('#sel_screen').val();
-    
-        // Check if all fields are selected
-        if (from_date === '' || to_date === '' || type === '' || sel_screen === '') {
-            // If any field is empty, show an alert
-            swalError('Warning','Please select all required fields')
-        } else {
-            // If all fields are filled, reload the table
-            cancel_revoke_table.ajax.reload();
-        }
-    });
-
-
-});
-//alert message
-function swalError(title, text) {
-	Swal.fire({
-		icon: 'error',
-		title: title,
-		text: text,
-        confirmButtonColor: '#009688',
-	})
 }

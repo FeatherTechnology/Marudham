@@ -1,7 +1,27 @@
 $(document).ready(function () {
+    
+    $('#from_date').change(function(){
+        const fromDate = $(this).val();
+        const toDate = $('#to_date').val();
+        $('#to_date').attr('min', fromDate);
+
+         // Check if from_date is greater than to_date
+        if (toDate && fromDate > toDate) {
+            $('#to_date').val(''); // Clear the invalid value
+        }
+    });
 
     //Loan Report Table
-    var loan_issue_report_table = $('#loan_issue_report_table').DataTable({
+    // var loan_issue_report_table = ;
+    $('#reset_btn').click(function () {
+        // loan_issue_report_table.ajax.reload();
+        loanIssueReportTable();
+    })
+});
+
+function loanIssueReportTable(){
+    $('#loan_issue_report_table').DataTable().destroy();
+    $('#loan_issue_report_table').DataTable({
         "order": [
             [0, "desc"]
         ],
@@ -62,7 +82,4 @@ $(document).ready(function () {
             searchFunction('loan_issue_report_table');
         }
     });
-    $('#reset_btn').click(function () {
-        loan_issue_report_table.ajax.reload();
-    })
-});
+}
